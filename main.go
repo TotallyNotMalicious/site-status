@@ -16,21 +16,21 @@ func main() {
 	go check(host, c)
 
 	for {
-		go func(link string) {
+		go func(site string) {
 			time.Sleep(5 * time.Second)
-			check(link, c)
+			check(site, c)
 		}(<-c)
 	}
 }
 
-func check(link string, c chan string) {
-	_, err := http.Get(link)
+func check(site string, c chan string) {
+	_, err := http.Get(site)
 	if err != nil {
-		fmt.Println(link, "is not responding")
-		c <- link
+		fmt.Println(site, "is not responding")
+		c <- site
 		return
 	}
 
-	fmt.Println(link, "is active and responding")
-	c <- link
+	fmt.Println(site, "is active and responding")
+	c <- site
 }
