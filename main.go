@@ -18,7 +18,7 @@ func main() {
 	for {
 		go func(link string) {
 			time.Sleep(5 * time.Second)
-			checkLink(link, c)
+			check(link, c)
 		}(<-c)
 	}
 }
