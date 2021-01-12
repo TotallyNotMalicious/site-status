@@ -13,7 +13,7 @@ func main() {
 	fmt.Scan(&host)
 
 	c := make(chan string)
-	go checkLink(host, c)
+	go check(host, c)
 
 	for {
 		go func(link string) {
@@ -23,7 +23,7 @@ func main() {
 	}
 }
 
-func checkLink(link string, c chan string) {
+func check(link string, c chan string) {
 	_, err := http.Get(link)
 	if err != nil {
 		fmt.Println(link, "is not responding")
